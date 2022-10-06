@@ -3,7 +3,6 @@ import Hash from '@ioc:Adonis/Core/Hash'
 import { column, beforeSave, BaseModel, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
 
 import Post from 'App/Models/Post'
-import Forum from 'App/Models/Forum'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -29,9 +28,6 @@ export default class User extends BaseModel {
 
   @hasMany(() => Post)
   public posts: HasMany<typeof Post>
-
-  @hasMany(() => Forum)
-  public forums: HasMany<typeof Forum>
 
   @beforeSave()
   public static async hashPassword(User: User) {

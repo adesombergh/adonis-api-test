@@ -2,7 +2,6 @@ import { DateTime } from 'luxon'
 import { BaseModel, column, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
 
 import User from 'App/Models/User'
-import Forum from 'App/Models/Forum'
 
 export default class Post extends BaseModel {
   @column({ isPrimary: true })
@@ -15,9 +14,6 @@ export default class Post extends BaseModel {
   public content: string
 
   @column()
-  public forumId: number
-
-  @column()
   public userId: number
 
   @column.dateTime({ autoCreate: true })
@@ -28,7 +24,4 @@ export default class Post extends BaseModel {
 
   @belongsTo(() => User)
   public user: BelongsTo<typeof User>
-
-  @belongsTo(() => Forum)
-  public forum: BelongsTo<typeof Forum>
 }

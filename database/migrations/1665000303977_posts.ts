@@ -9,7 +9,6 @@ export default class extends BaseSchema {
       table.string('title', 255).notNullable()
       table.string('content', 255).notNullable()
       table.integer('user_id', 180).notNullable()
-      table.integer('forum_id').nullable()
       table.timestamps(true)
     })
   }

@@ -3,7 +3,7 @@ import Post from 'App/Models/Post'
 
 export default class PostsController {
   public async index({}: HttpContextContract) {
-    return await Post.query().preload('user').preload('forum')
+    return await Post.query().preload('user')
   }
 
   public async show({ params }: HttpContextContract) {
@@ -11,7 +11,6 @@ export default class PostsController {
       const post = await Post.find(params.id)
       if (post) {
         await post.load('user')
-        await post.load('forum')
         return post
       }
     } catch (error) {
@@ -27,7 +26,6 @@ export default class PostsController {
       post.content = request.input('content')
       if (await post.save()) {
         await post.preload('user')
-        await post.preload('forum')
         return post
       }
       return // 422
@@ -41,7 +39,6 @@ export default class PostsController {
     const post = new Post()
     post.title = request.input('title')
     post.content = request.input('content')
-    post.forumId = request.input('forum')
     await user.related('posts').save(post)
     return post
   }

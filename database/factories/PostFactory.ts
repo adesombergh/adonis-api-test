@@ -6,6 +6,5 @@ export default Factory.define(Post, ({ faker }) => {
     title: faker.lorem.sentence(),
     content: faker.lorem.paragraphs(4),
     userId: 2,
-    forumId: 1,
   }
 }).build()
